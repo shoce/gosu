@@ -7,7 +7,7 @@ The core of how `gosu` works is stolen directly from how Docker/libcontainer its
 ```console
 $ gosu
 Usage: ./gosu user-spec command [args]
-   eg: ./gosu tianon bash
+   eg: ./gosu shoce bash
        ./gosu nobody:root bash -c 'whoami && id'
        ./gosu 1000:1 id
 

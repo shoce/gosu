@@ -18,7 +18,7 @@ RUN set -eux; \
 Newer `gosu` releases:
 
 ```dockerfile
-ENV GOSU_VERSION 1.17
+ENV GOSU_VERSION 1.18
 RUN set -eux; \
 # save list of currently installed packages for later so we can clean up
 	savedAptMark="$(apt-mark showmanual)"; \
@@ -27,8 +27,8 @@ RUN set -eux; \
 	rm -rf /var/lib/apt/lists/*; \
 	\
 	dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')"; \
-	wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch"; \
-	wget -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch.asc"; \
+	wget -O /usr/local/bin/gosu "https://github.com/shoce/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch"; \
+	wget -O /usr/local/bin/gosu.asc "https://github.com/shoce/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch.asc"; \
 	\
 # verify the signature
 	export GNUPGHOME="$(mktemp -d)"; \
@@ -51,7 +51,7 @@ RUN set -eux; \
 ## `FROM alpine` (3.7+)
 
 ```dockerfile
-ENV GOSU_VERSION 1.17
+ENV GOSU_VERSION 1.18
 RUN set -eux; \
 	\
 	apk add --no-cache --virtual .gosu-deps \
@@ -61,8 +61,8 @@ RUN set -eux; \
 	; \
 	\
 	dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')"; \
-	wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch"; \
-	wget -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch.asc"; \
+	wget -O /usr/local/bin/gosu "https://github.com/shoce/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch"; \
+	wget -O /usr/local/bin/gosu.asc "https://github.com/shoce/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch.asc"; \
 	\
 # verify the signature
 	export GNUPGHOME="$(mktemp -d)"; \
@@ -83,7 +83,7 @@ RUN set -eux; \
 ## `FROM centos|oraclelinux|...|ubi|...` (RPM-based distro)
 
 ```dockerfile
-ENV GOSU_VERSION 1.17
+ENV GOSU_VERSION 1.18
 RUN set -eux; \
 	\
 	rpmArch="$(rpm --query --queryformat='%{ARCH}' rpm)"; \
@@ -96,8 +96,8 @@ RUN set -eux; \
 		x86_64) dpkgArch='amd64' ;; \
 		*) echo >&2 "error: unknown/unsupported architecture '$rpmArch'"; exit 1 ;; \
 	esac; \
-	wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch"; \
-	wget -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch.asc"; \
+	wget -O /usr/local/bin/gosu "https://github.com/shoce/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch"; \
+	wget -O /usr/local/bin/gosu.asc "https://github.com/shoce/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch.asc"; \
 	\
 # verify the signature
 	export GNUPGHOME="$(mktemp -d)"; \
@@ -120,5 +120,5 @@ Notes:
 ## Others / Lazy Method
 
 ```dockerfile
-COPY --from=tianon/gosu /gosu /usr/local/bin/
+COPY --from=shoce/gosu /gosu /usr/local/bin/
 ```

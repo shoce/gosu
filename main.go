@@ -1,4 +1,4 @@
-package main // import "github.com/tianon/gosu"
+package main // import "github.com/shoce/gosu"
 
 import (
 	"os"
@@ -14,7 +14,7 @@ func init() {
 }
 
 func version() string {
-	// 1.17 (go1.18.2 on linux/amd64; gc)
+	// 1.18 (go1.24.5 on linux/amd64; gc)
 	return Version + ` (` + runtime.Version() + ` on ` + runtime.GOOS + `/` + runtime.GOARCH + `; ` + runtime.Compiler + `)`
 }
 
@@ -23,12 +23,12 @@ func usage() string {
 	v := version()
 	t := `
 Usage: ` + self + ` user-spec command [args]
-   eg: ` + self + ` tianon bash
+   eg: ` + self + ` shoce bash
        ` + self + ` nobody:root bash -c 'whoami && id'
        ` + self + ` 1000:1 id
 
 ` + self + ` version: ` + v + `
-` + self + ` license: Apache-2.0 (full text at https://github.com/tianon/gosu)
+` + self + ` license: Apache-2.0 (full text at https://github.com/shoce/gosu)
 `
 	return t[1:]
 }

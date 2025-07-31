@@ -1,4 +1,5 @@
-FROM golang:1.20.5-bookworm
+# https://hub.docker.com/_/golang/tags
+FROM golang:1.24.5
 
 RUN set -eux; \
 	apt-get update; \
@@ -30,7 +31,7 @@ RUN set -eux; \
 # disable CGO for ALL THE THINGS (to help ensure no libc)
 ENV CGO_ENABLED 0
 
-WORKDIR /go/src/github.com/tianon/gosu
+WORKDIR /go/src/github.com/shoce/gosu
 
 COPY go.mod go.sum ./
 RUN go mod download

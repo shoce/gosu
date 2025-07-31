@@ -55,7 +55,7 @@ exec jq <<<"$arches" -r --arg commit "$commit" --arg version "$version" '
 	| [
 		{
 			Maintainers: "Tianon Gravi <tianon@tianon.xyz> (@tianon)",
-			GitRepo: "https://github.com/tianon/gosu.git",
+			GitRepo: "https://github.com/shoce/gosu.git",
 			GitCommit: $commit,
 			Directory: "hub",
 			Builder: "buildkit",
