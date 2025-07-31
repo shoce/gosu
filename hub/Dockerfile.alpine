@@ -1,3 +1,4 @@
+# https://hub.docker.com/_/alpine/tags
 FROM alpine:3.22
 
 # https://github.com/shoce/gosu/releases
@@ -5,6 +6,7 @@ ENV GOSU_VERSION 1.18
 
 RUN set -eux; \
 	apk add --no-cache --virtual .fetch-deps dpkg gnupg; \
+	dpkg --print-architecture ; \
 	dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')"; \
 	wget -O /usr/local/bin/gosu.asc "https://github.com/shoce/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch.asc"; \
 	wget -O /usr/local/bin/gosu "https://github.com/shoce/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch"; \
